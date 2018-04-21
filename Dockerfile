@@ -1,4 +1,4 @@
-FROM burakince/aspnetcore-supervisor-filebeat:2.0.6
+FROM burakince/aspnetcore-supervisor-filebeat:2.0.7
 
 RUN mkdir -p /etc/filebeat \
   && mkdir -p /etc/value-service \
