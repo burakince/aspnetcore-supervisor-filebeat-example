@@ -152,7 +152,7 @@ tags: ["value-service"]
 #----------------------------- Logstash output --------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["localhost:5044"]
+  hosts: ["${LOGSTASH_HOST}"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications

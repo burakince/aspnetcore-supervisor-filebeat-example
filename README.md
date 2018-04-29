@@ -39,5 +39,5 @@ dotnet publish -c Release -o out
 
 ```
 docker build . -t valueservice
-docker run -d -p 80:80 valueservice
+docker run -d -p 80:80 -e LOGSTASH_HOST="172.17.0.2:5044" valueservice
 ```
