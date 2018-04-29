@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace ValueService
@@ -19,6 +13,11 @@ namespace ValueService
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureLogging(builder => builder.AddFile(options => {
+                    options.FileName = "diagnostics-";
+                    options.LogDirectory = "/var/log/value-service";
+                    options.FileSizeLimit = 2 * 1024 * 1024;
+                })) 
                 .UseStartup<Startup>()
                 .Build();
     }
