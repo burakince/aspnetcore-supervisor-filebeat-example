@@ -41,3 +41,16 @@ dotnet publish -c Release -o out
 docker build . -t valueservice
 docker run -d -p 80:80 -e LOGSTASH_HOST="172.17.0.2:5044" valueservice
 ```
+
+## Test with ELK Container
+
+```
+docker run -p 5601:5601 -p 9200:9200 -p 5044:5044 -it --name elk burakince/elk
+docker run -d -p 80:80 --link elk:logstash -e LOGSTASH_HOST="logstash:5044" valueservice
+```
+
+## Creating Index Pattern on Kibana
+
+Open [Kibana's Create Index Pattern](http://localhost:5601/app/kibana#/management/kibana/index?_g=()) page and enter `filebeat-*` as a pattern and click `Next step`. Select `@timestamp` and click `Create index pattern`. Now you can see all logs on Kibana
+
+Kibana URL: http://localhost:5601/
