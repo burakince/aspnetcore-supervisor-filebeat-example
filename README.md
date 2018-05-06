@@ -44,6 +44,8 @@ docker run -d -p 80:80 -e LOGSTASH_HOST="172.17.0.2:5044" valueservice
 
 ## Test with ELK Container
 
+This step using [ELK](https://hub.docker.com/r/burakince/elk/) image.
+
 ```
 docker run -d -p 5601:5601 -p 9200:9200 -p 5044:5044 --name elk burakince/elk
 docker run -d -p 80:80 --link elk:logstash -e LOGSTASH_HOST="logstash:5044" valueservice
